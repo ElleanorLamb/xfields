@@ -329,8 +329,8 @@ void BoostParameters_boost_coordinates_inv(
                                 *x*x*exp(-(x*x+y*y)/(2.*sigma*sigma)));
             Gy = 1./(2*(x*x+y*y))*(x*Ex-y*Ey+1./(2.*PI*EPSILON_0*sigma*sigma)
                                 *y*y*exp(-(x*x+y*y)/(2.*sigma*sigma)));
-            printf("Ex%.10e\n", Ex);
-            printf("Ey%.10e\n", Ey);
+            //printf("Ex%.10e\n", Ex);
+            //printf("Ey%.10e\n", Ey);
         }
     }
     else{
@@ -338,8 +338,8 @@ void BoostParameters_boost_coordinates_inv(
         const double Sig_11 = sigma_x*sigma_x;
         const double Sig_33 = sigma_y*sigma_y;
     
-	printf("Inside Sig_11=%.10e\n", Sig_11);
-	printf("Inside Sig_33=%.10e\n", Sig_33);
+	//printf("Inside Sig_11=%.10e\n", Sig_11);
+	//printf("Inside Sig_33=%.10e\n", Sig_33);
 
         Gx =-1./(2.*(Sig_11-Sig_33))*(x*Ex+y*Ey+1./(2.*PI*EPSILON_0)   
                    *(sigma_y/sigma_x*exp(-x*x/(2.*Sig_11)-y*y/(2*Sig_33))-1.));
