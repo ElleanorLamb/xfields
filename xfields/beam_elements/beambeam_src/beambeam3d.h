@@ -305,12 +305,11 @@ void BoostParameters_boost_coordinates_inv(
     double Gx, Gy;
 
     if (fabs(sigma_x-sigma_y) < min_sigma_diff){
-        
-        if (fabs(x) < 1e-14){
+        const double sigma = 0.5*(sigma_x+sigma_y);
+        if (fabs(x*x+y*y) < sigma/10000){
             const double x_g = 1e-14;
-            const double sigma = 0.5*(sigma_x+sigma_y); 
             if (fabs(Ex) < 1e-50){
-                const double y_g = 1e-14;
+                const double y_g = 1e-14; 
                 Gx = (1./((x_g*x_g+y_g*y_g))*(x_g*x_g*exp(-(x_g*x_g+y_g*y_g)/2./sigma*sigma)/sigma*sigma));
                 Gy = (1./((x_g*x_g+y_g*y_g))*(y_g*y_g*exp(-(x_g*x_g+y_g*y_g)/2./sigma*sigma)/sigma*sigma));             
             }
