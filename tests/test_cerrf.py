@@ -1,3 +1,8 @@
+# copyright ################################# #
+# This file is part of the Xfields Package.   #
+# Copyright (c) CERN, 2021.                   #
+# ########################################### #
+
 import numpy as np
 from scipy.special import wofz as wofz_scipy
 import xobjects as xo
@@ -7,7 +12,7 @@ from xfields.general import _pkg_root
 
 def test_cerrf_q1():
 
-    ctx = xo.ContextCpu(omp_num_threads=2)
+    ctx = xo.ContextCpu(omp_num_threads=0)
 
     xx = np.logspace(-8, +8, 51, dtype=np.float64)
     yy = np.logspace(-8, +8, 51, dtype=np.float64)
@@ -127,7 +132,7 @@ def test_cerrf_all_quadrants():
     if xo.ContextCpu not in available:
         return
 
-    ctx = xo.ContextCpu(omp_num_threads=2)
+    ctx = xo.ContextCpu(omp_num_threads=0)
 
     re_max = np.float64(np.sqrt(2.0) * x0)
     im_max = np.float64(np.sqrt(2.0) * y0)

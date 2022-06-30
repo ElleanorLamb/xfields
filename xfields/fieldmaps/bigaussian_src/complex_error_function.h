@@ -1,3 +1,8 @@
+// copyright ################################# //
+// This file is part of the Xfields Package.   //
+// Copyright (c) CERN, 2021.                   //
+// ########################################### //
+
 #ifndef XFIELDS_COMPLEX_ERROR_FUNCTION_H
 #define XFIELDS_COMPLEX_ERROR_FUNCTION_H
 
@@ -120,9 +125,7 @@
         temp = ( double )1.;
         #endif /* defined( FADDEEVA_NO_GZ_WEIGHT_FN ) */
 
-        nu   = ( y > ( double )REAL_EPSILON )
-             ? ( int )FADDEEVA_NU_0 + ( int )( ( double )FADDEEVA_NU_1 * temp )
-             : ( int )0;
+        nu   = ( int )FADDEEVA_NU_0 + ( int )( ( double )FADDEEVA_NU_1 * temp );
 
         N         = ( int )FADDEEVA_N0 + ( int )( ( double )FADDEEVA_N1 * temp );
         h2_n      = ( double )FADDEEVA_H0 * temp; /* h(z) = h_0 * g(z) */
@@ -137,8 +140,11 @@
      * very unlikely case, use the continuos fraction & verify result! */
     use_taylor_sum &= ( h2_n > ( double )REAL_EPSILON );
 
+    Rx = 0;
+    #ifdef FADDEEVA_SPECIAL_Y_0
     Rx = ( y > ( double )REAL_EPSILON )
        ? ( double )0.0 : exp( -x * x ) / ( double )TWO_OVER_SQRT_PI;
+    #endif
 
     n = nu;
     nn = ( double )n;
